@@ -1,0 +1,29 @@
+import streamlit as st
+
+# 1. 网页大标题
+st.title("🎮 终极求生欲：打游戏检测器")
+
+# 2. 把两层 input() 完美升级为网页输入框
+my_mood = st.number_input("我的心情指数是:", min_value=0.0, max_value=100.0, value=50.0)
+her_mood = st.number_input("她的心情指数是:", min_value=0.0, max_value=100.0, value=50.0)
+
+game = my_mood + her_mood
+
+# 3. 把普通的 print 换成网页文字 st.write
+st.write("今天的心情指数是: " + str(game))
+
+# 4. 你的原装逻辑，百分之百完美回归！只是把 print 换成了彩色框：
+if game >= 90:
+    if my_mood > 40 and her_mood > 40:
+        st.success("可以打游戏 😄")        # 🟢 绿色成功框
+    else:
+        st.warning("有人心情不好 ☠️")       # 🟡 黄色警告框
+
+elif 50 <= game < 90:
+    if my_mood > 25 and her_mood > 25:
+        st.info("可以稍微打一下 🙂")        # 🔵 蓝色提示框（用蓝色代表可以稍微打一下，特别贴切！）
+    else:
+        st.warning("最好不要打！！！")     # 🟡 黄色警告框
+
+else:
+    st.error("你打一下试试 ☠️")            # 🔴 红色危险框
